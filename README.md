@@ -2,15 +2,18 @@
 *Official MATLAB implementation for ICONIP 2026*
 
 ## Environment Requirements
-- MATLAB R2018a or later (requires `discretize` function)
+- MATLAB R2018a or later
 - Statistics and Machine Learning Toolbox
+
+---
 
 ## Quick Start
 1. Place all files in the same folder and set it as the MATLAB working directory.
 2. Run the main script in the MATLAB command window:
+
 ```matlab
 main_em_brb
-``
+
 ##Core Pipeline
 Load dataset (automatic 80/20 split if no test set is provided)
 PSO optimization for structural parameters

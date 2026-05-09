@@ -1,0 +1,187 @@
+╔══════════════════════════════════════════╗
+║   EM-BRB v2  (智能初始化+宽松剪枝)       ║
+╚══════════════════════════════════════════╝
+
+[数据] 从 train.txt 加载训练集
+[数据] 从 test.txt 加载测试集
+  训练: 2250 样本 | 测试: 250 样本
+
+
+[PSO 优化]
+  iter   1/120 | NLL=0.0313 | 3.7s
+  iter  20/120 | NLL=0.0285 | 88.3s
+  iter  40/120 | NLL=0.0273 | 184.6s
+  iter  60/120 | NLL=0.0271 | 281.4s
+  iter  80/120 | NLL=0.0270 | 380.7s
+  iter 100/120 | NLL=0.0269 | 481.7s
+  iter 120/120 | NLL=0.0269 | 582.5s
+[PSO完成] NLL=0.0269
+[最终EM: 100次迭代 × 3次重启]
+    ── 重启 1/3 ──
+    EM iter  1 | logL = -0.2375
+    EM iter  5 | logL = -0.0365
+    EM iter 10 | logL = -0.0308
+    EM iter 15 | logL = -0.0288
+    EM iter 20 | logL = -0.0281
+    EM iter 25 | logL = -0.0269
+    EM收敛 (iter=28, Δ=3.73e-06)
+    ── 重启 2/3 ──
+    EM iter  1 | logL = -0.2519
+    EM iter  5 | logL = -0.0356
+    EM iter 10 | logL = -0.0355
+    EM iter 15 | logL = -0.0356
+    EM iter 20 | logL = -0.0368
+    EM iter 25 | logL = -0.0381
+    EM iter 30 | logL = -0.0393
+    EM iter 35 | logL = -0.0400
+    EM iter 40 | logL = -0.0400
+    EM收敛 (iter=44, Δ=7.82e-06)
+    ── 重启 3/3 ──
+    EM iter  1 | logL = -0.2428
+    EM iter  5 | logL = -0.0501
+    EM iter 10 | logL = -0.0463
+    EM iter 15 | logL = -0.0419
+    EM iter 20 | logL = -0.0417
+    EM收敛 (iter=23, Δ=7.60e-06)
+最终 logL = -0.0270
+
+
+[规则在线稀疏学习 (VEM + Dirichlet Prior)]
+  VEM 剪枝结果: 48/64 规则保留 (75.0%)
+  KL散度(信息)范围: [0.000, 2.167], 阈值=0.450
+
+[评估]
+
+===== 训练集 =====
+Using adaptive thresholds for 5 classes: [0.125, 0.375, 0.625, 0.875]
+
+5-Class Distribution:
+  Very Low (Risk=0): True=450 (20.0%), Pred=449 (20.0%)
+  Low (Risk=0.25): True=450 (20.0%), Pred=450 (20.0%)
+  Medium (Risk=0.5): True=450 (20.0%), Pred=454 (20.2%)
+  High (Risk=0.75): True=450 (20.0%), Pred=461 (20.5%)
+  Very High (Risk=1): True=450 (20.0%), Pred=436 (19.4%)
+=== 5-CLASS EVALUATION METRICS SUMMARY ===
+Data Info:
+  Samples: 2250, Classes: 5, Thresholds: [0.125, 0.375, 0.625, 0.875]
+Regression (Risk Score):
+  MAE: 0.0072, RMSE: 0.0481, Spearman ρ: 0.9740 (p=0.0000)
+  R²: 0.9815, Continuous Accuracy (|error|<0.100): 0.9831
+Classification (5 Risk Levels):
+  Accuracy: 0.9836, Macro-F1: 0.9836, Balanced Acc: 0.9836
+  MCC: 0.9795, Weighted F1: 0.9836
+Very High-Risk (Class 5) Focus:
+  Precision: 0.9931, Recall: 0.9622, F1: 0.9774
+  Specificity: 0.9983
+
+
+===== 测试集 =====
+Using adaptive thresholds for 5 classes: [0.125, 0.375, 0.625, 0.875]
+
+5-Class Distribution:
+  Very Low (Risk=0): True=50 (20.0%), Pred=50 (20.0%)
+  Low (Risk=0.25): True=50 (20.0%), Pred=50 (20.0%)
+  Medium (Risk=0.5): True=50 (20.0%), Pred=47 (18.8%)
+  High (Risk=0.75): True=50 (20.0%), Pred=54 (21.6%)
+  Very High (Risk=1): True=50 (20.0%), Pred=49 (19.6%)
+=== 5-CLASS EVALUATION METRICS SUMMARY ===
+Data Info:
+  Samples: 250, Classes: 5, Thresholds: [0.125, 0.375, 0.625, 0.875]
+Regression (Risk Score):
+  MAE: 0.0087, RMSE: 0.0522, Spearman ρ: 0.9742 (p=0.0000)
+  R²: 0.9782, Continuous Accuracy (|error|<0.104): 0.9760
+Classification (5 Risk Levels):
+  Accuracy: 0.9760, Macro-F1: 0.9759, Balanced Acc: 0.9760
+  MCC: 0.9703, Weighted F1: 0.9759
+Very High-Risk (Class 5) Focus:
+  Precision: 0.9796, Recall: 0.9600, F1: 0.9697
+  Specificity: 0.9950
+
+
+=============================================================
+              📊 完整性能指标（训练 + 测试）
+=============================================================
+
+✅ 训练集 分类指标：
+   准确率 Accuracy      = 0.9836
+   宏精确率 Precision   = 0.9838
+   宏召回率 Recall      = 0.9836
+   宏F1分数 F1          = 0.9836
+   Kappa 系数           = 0.9794
+   MCC 系数             = 0.9795
+
+✅ 训练集 回归指标：
+   MAE                  = 0.007185
+   RMSE                 = 0.048093
+   R² 决定系数          = 0.9815
+
+✅ 训练集 各类 Prec / Recall / F1：
+   类 0.00 | Prec=0.9978 | Recall=0.9956 | F1=0.9967
+   类 0.25 | Prec=1.0000 | Recall=1.0000 | F1=1.0000
+   类 0.50 | Prec=0.9648 | Recall=0.9733 | F1=0.9690
+   类 0.75 | Prec=0.9631 | Recall=0.9867 | F1=0.9748
+   类 1.00 | Prec=0.9931 | Recall=0.9622 | F1=0.9774
+
+✅ 训练集 混淆矩阵：
+   448     0     2     0     0
+     0   450     0     0     0
+     0     0   438     9     3
+     1     0     5   444     0
+     0     0     9     8   433
+
+
+-------------------------------------------
+🚀 测试集 分类指标：
+   准确率 Accuracy      = 0.9760
+   宏精确率 Precision   = 0.9768
+   宏召回率 Recall      = 0.9760
+   宏F1分数 F1          = 0.9759
+   Kappa 系数           = 0.9700
+   MCC 系数             = 0.9703
+   AUC                  = 0.9995
+
+🚀 测试集 回归指标：
+   MAE                  = 0.008654
+   RMSE                 = 0.052221
+   R² 决定系数          = 0.9782
+
+🚀 测试集 各类 Prec / Recall / F1：
+   类 0.00 | Prec=1.0000 | Recall=1.0000 | F1=1.0000
+   类 0.25 | Prec=1.0000 | Recall=1.0000 | F1=1.0000
+   类 0.50 | Prec=0.9787 | Recall=0.9200 | F1=0.9485
+   类 0.75 | Prec=0.9259 | Recall=1.0000 | F1=0.9615
+   类 1.00 | Prec=0.9796 | Recall=0.9600 | F1=0.9697
+
+🚀 测试集 混淆矩阵：
+    50     0     0     0     0
+     0    50     0     0     0
+     0     0    46     3     1
+     0     0     0    50     0
+     0     0     1     1    48
+
+
+=============================================================
+
+=============================================================
+         📐 补充性能指标（BRB 专项 + 统计）
+=============================================================
+
+  Cohen's κ  (训练) = 0.9794
+  Cohen's κ  (测试) = 0.9700
+
+  Pearson r  (训练) = 0.9907
+  Pearson r  (测试) = 0.9891
+
+  Mean Trustworthiness  E[β] = 0.2000
+
+  Mean p(Θ)  (测试) = 0.0000
+
+  Neg. Log-Likelihood (最终EM) = 0.0270
+
+  f₁ Minimax SDA  (测试) = 0.9485
+
+  Mean ᾱ  (Interdep. Index) = 0.6313
+
+  Fraction α ≥ 0.99 (≈ saturated rules) = 0.5312  (34 / 64)
+
+=============================================================

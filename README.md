@@ -7,13 +7,13 @@
 
 ---
 
-##Quick Start
+## Quick Start
 1. Place all files in the same folder and set it as the MATLAB working directory.
 2. Run the main script in the MATLAB command window: main_em_brb
 
 ---
 
-##Core Pipeline
+## Core Pipeline
 - Load dataset (automatic 80/20 split if no test set is provided)
 - PSO optimization for structural parameters
 - EM algorithm for parameter learning
@@ -22,7 +22,7 @@
 
 ---
 
-##Dataset Replacement Guide
+## Dataset Replacement Guide
 When using a new dataset, modify these parameters in main_em_brb.m:
 - M: Number of input features (default: 2)
 - N_class: Number of classes (default: 5)
@@ -30,8 +30,8 @@ When using a new dataset, modify these parameters in main_em_brb.m:
 
 ---
 
-##Citation
+## Citation
 If you use this code, please cite our ICONIP 2026 paper.
 
-##License
+## License
 This project is released under the MIT License.
